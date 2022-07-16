@@ -181,16 +181,19 @@ app.get('/user/:id', validaToken , async (req, res) => {
     }
 });
 
-;
+async function conectToDb() {
+
+    try{
+        await mongoose.connect(
+            `mongodb+srv://${dbUser}:${dbPass}@cluster0.tcfnt.mongodb.net/?retryWrites=true&w=majority`
+        )
+
+        console.log("conectou ao db");
+    } catch(e){
+        console.error(e)
+    }
+}
 
 app.listen(3000, () => {
-    mongoose.connect(
-        `mongodb+srv://${dbUser}:${dbPass}@cluster0.tcfnt.mongodb.net/?retryWrites=true&w=majority`
-    ).then(
-        () => {
-            console.log('Conectou ao DB');
-        }
-    ).catch(
-        (e) => console.error(e)
-    )
+    conectToDb();
 });
