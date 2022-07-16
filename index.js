@@ -185,9 +185,11 @@ mongoose.connect(
     `mongodb+srv://${dbUser}:${dbPass}@cluster0.tcfnt.mongodb.net/?retryWrites=true&w=majority`
 ).then(
     () => {
-        app.listen(3000);
+        
         console.log('Conectou ao DB');
     }
 ).catch(
     (e) => console.error(e)
 );
+
+app.listen(3000);
