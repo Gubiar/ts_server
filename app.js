@@ -12,7 +12,7 @@ const dbUser = process.env.DB_USER;
 const dbPass = process.env.DB_PASS;
 
 //Models
-const User = require('../models/User');
+const User = require('./models/User');
 
 //Api
 const app = express();
