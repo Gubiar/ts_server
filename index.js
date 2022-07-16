@@ -20,6 +20,9 @@ app.use(express.json());
 
 
 app.get('/', (req, res) => {
+
+    conectToDb();
+
     res.status(200).json(
         {
             success: 'true',
@@ -60,6 +63,9 @@ function validaToken(req, res, next){
 
 //REGISTRAR USUARIO
 app.post('/auth/register', async (req, res) => {
+
+    conectToDb();
+
     const {name, email, password, confirmPassword} = req.body;
 
     if(!name || name.toString().length < 6)
@@ -110,6 +116,8 @@ app.post('/auth/register', async (req, res) => {
 //LOGIN USUARIO
 app.post('/auth/login', async (req, res) => {
 
+    conectToDb();
+
     const {email, password} = req.body;
     
     if(!email || !email.toString().includes('@') || !email.toString().includes('.'))
@@ -159,6 +167,8 @@ app.post('/auth/login', async (req, res) => {
 //PRIVATE ROUTE
 app.get('/user/:id', validaToken , async (req, res) => {
 
+    conectToDb();
+
     // const token = req.headers.authorization;
     const id = req.params.id;
 
@@ -187,7 +197,6 @@ async function conectToDb() {
         await mongoose.connect(
             `mongodb+srv://${dbUser}:${dbPass}@cluster0.tcfnt.mongodb.net/?retryWrites=true&w=majority`
         )
-
         console.log("conectou ao db");
     } catch(e){
         console.error(e)
