@@ -148,6 +148,7 @@ app.post('/auth/login', async (req, res) => {
         res.status(200).json({
             sucess: "true",
             message: "Login realizado com sucesso.",
+            id,
             user_name: user.name.toString(),
             user_email: user.email.toString(),
             token
