@@ -126,13 +126,11 @@ app.post('/auth/login', async (req, res) => {
 
     //Check if user exists
     const user = await User.findOne({email: email});
-
     if(!user){
         return res.status(404).json({success: 'false', message: 'Usuário não encontrado.'});
     }
 
     const checkPassword = await bcrypt.compare(password, user.password);
-
     if(!checkPassword){
         return res.status(422).json({success: 'false', message: 'Email ou senha inválidos.'});
     }
@@ -151,9 +149,11 @@ app.post('/auth/login', async (req, res) => {
             sucess: "true",
             message: "Login realizado com sucesso.",
             user_name: user.name.toString(),
+            user_email: user.email.toString(),
             token
         })
     } catch(e){
+
         console.error(e);
         res.status(500).json({
             sucess: "false",
@@ -170,7 +170,6 @@ app.get('/user/:id', validaToken , async (req, res) => {
 
     //Check if user exists
     const user = await User.findById(id, '-password');
-
     if(!user){
         return res.status(404).json({success: 'false', message: 'Usuário não encontrado.'});
     }
