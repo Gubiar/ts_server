@@ -178,7 +178,7 @@ app.get('/user/:id', validaToken , async (req, res) => {
     try{
         res.status(200).json({
             user,
-            message: "bora wess"
+            message: "Rota privada acessada!"
         })
 
     } catch(e){
