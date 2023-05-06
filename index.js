@@ -40,7 +40,7 @@ function validaToken(req, res, next){
     if(!token){
         return res.status(401).json(
             {
-                sucess: "false",
+                success: "false",
                 message: "Acesso negado."
             }
         );
@@ -56,7 +56,7 @@ function validaToken(req, res, next){
         console.error(e);
         return res.status(400).json(
             {
-                sucess: "false",
+                success: "false",
                 message: "Token de acesso inválido."
             }
         );
@@ -99,14 +99,14 @@ app.post('/auth/register', async (req, res) => {
 
         await user.save();
         res.status(201).json({
-            sucess: "true",
+            success: "true",
             message: "Usuário criado com sucesso."
         })
     } catch(e) {
 
         console.error(e);
         res.status(500).json({
-            sucess: "false",
+            success: "false",
             message: "Não foi possível cadastrar o usuário. Tente novamente mais tarde."
         })
     }
