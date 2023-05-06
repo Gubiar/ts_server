@@ -146,7 +146,7 @@ app.post('/auth/login', async (req, res) => {
         );
 
         res.status(200).json({
-            sucess: "true",
+            success: "true",
             message: "Login realizado com sucesso.",
             id: user.id,
             user_name: user.name.toString(),
@@ -157,7 +157,7 @@ app.post('/auth/login', async (req, res) => {
 
         console.error(e);
         res.status(500).json({
-            sucess: "false",
+            success: "false",
             message: "Não foi possível fazer o login. Tente novamente mais tarde."
         })
     }
@@ -184,7 +184,7 @@ app.get('/user/:id', validaToken , async (req, res) => {
     } catch(e){
         console.error(e);
         res.status(500).json({
-            sucess: "false",
+            success: "false",
             message: "Não foi possível fazer o login. Tente novamente mais tarde."
         })
     }
